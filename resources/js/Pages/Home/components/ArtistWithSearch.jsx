@@ -2,7 +2,7 @@ import React from "react";
 
 const ArtistWithSearch = () => {
     return(
-        <div className="w-full">
+        <div className="w-full h-full">
             <div className="w-100 bg-gray-900 rounded-3xl">
                 <div className="md:mx-5 md:mb-2 mx-5 py-2.5 flex justify-between items-center">
                     <div className="flex -space-x-4">
@@ -24,7 +24,7 @@ const ArtistWithSearch = () => {
                     </a>
                 </div>
             </div>
-            <div className="w-100 rounded-3xl border border-gray-500 md:mt-9 mt-3">
+            <div className="w-100 rounded-3xl border border-gray-500 md:mt-3 mt-2">
                 <div className="md:m-1 px-4 py-2.5 flex items-center">
                     <div className="rounded-full border mr-1 border-gray-900 p-3">
                     <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 20">

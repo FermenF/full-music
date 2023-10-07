@@ -11,7 +11,7 @@ const Favourites = () => {
     };
 
     return (
-        <div className="w-full h-full rounded-3xl" style={bgImage}>
+        <div className="w-full h-full rounded-3xl flex flex-col justify-between" style={bgImage}>
             <div className="flex w-full md:p-14 p-5 justify-between md:justify-start">
                 <div className="flex-grow">
                     <div className="text-left flex">
@@ -31,7 +31,7 @@ const Favourites = () => {
                     </button>
                 </div>
             </div>
-            <div className="text-white md:pt-11 md:px-14 p-5">
+            <div className="text-white md:p-14 p-5">
                 <h1 className="text-3xl md:text-4xl font-bold">
                     Always your <br/>favourites
                 </h1>

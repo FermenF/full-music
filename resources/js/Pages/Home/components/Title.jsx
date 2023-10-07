@@ -3,7 +3,7 @@ import React from "react";
 
 const Title = () => {
     return (
-        <div className="w-full md:text-left text-center">
+        <div className="w-full h-full md:text-left text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold w-full">Improve Your Music Taste</h1>
             <button className="border-2 mx-auto md:mx-0 border-black bg-white text-black mt-5 py-1 px-4 rounded-full font-semibold flex items-center hover:bg-blue-100 hover:border-blue-900">
                 <span className="mr-5">START NOW</span>
