@@ -2,7 +2,7 @@ import React from "react";
 
 const ArtistWithSearch = () => {
     return(
-        <div className="w-full h-full">
+        <div className="w-full ">
             <div className="w-100 bg-gray-900 rounded-3xl">
                 <div className="md:mx-5 md:mb-2 mx-5 py-2.5 flex justify-between items-center">
                     <div className="flex -space-x-4">
