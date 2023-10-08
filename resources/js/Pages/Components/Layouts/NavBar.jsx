@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@inertiajs/react';
 
 const Navbar = () => {
     return (
@@ -17,7 +18,7 @@ const Navbar = () => {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-multi-level">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                         <li>
-                            <a href="#" className="text-1xl font-bold block py-2 pl-3 pr-4 text-white rounded bg-blue-500">Home</a>
+                            <Link href="" className="text-1xl font-bold block py-2 pl-3 pr-4 text-white rounded bg-blue-500">Home</Link>
                         </li>
                         <li>
                             <a href="#" className="text-1xl font-bold block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white">Services</a>
@@ -27,6 +28,9 @@ const Navbar = () => {
                         </li>
                         <li>
                             <a href="#" className="text-1xl font-bold block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white">Contact</a>
+                        </li>
+                        <li>
+                            <Link href="/login" className="text-1xl font-bold block py-2 pl-3 pr-4 bg-black rounded-full hover:bg-grat-500 text-white">Login</Link>
                         </li>
                     </ul>
                 </div>
