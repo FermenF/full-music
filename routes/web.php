@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,12 +15,18 @@ use Inertia\Inertia;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Auth::routes();
+Auth::routes();
 
 Route::get('/', function () {
     return Inertia::render('Home/Index');
-})->name('home');
+})->name('index');
 
 Route::get('/login', function() {
     return Inertia::render('Auth/Login');
 })->name('login');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+

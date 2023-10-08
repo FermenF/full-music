@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react'
 
 const Navbar = () => {
+
+    const { auth } = usePage().props;
+    const user = auth.user;
+
+    console.log(user);
+
     return (
         <nav className="bg-white">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -30,7 +37,7 @@ const Navbar = () => {
                             <a href="#" className="text-1xl font-bold block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white">Contact</a>
                         </li>
                         <li>
-                            <Link href="/login" className="text-1xl font-bold block py-2 pl-3 pr-4 bg-black rounded-full hover:bg-grat-500 text-white">Login</Link>
+                            <ButtonLoginOrLogout user={ user }/>
                         </li>
                     </ul>
                 </div>
@@ -39,4 +46,15 @@ const Navbar = () => {
     );
 }
 
+const ButtonLoginOrLogout = ({ user }) => (
+    <Link
+      href={user ? '/logout' : '/login'}
+      method={user ? 'post' : undefined}
+      as="button"
+      className={`text-1xl font-bold block py-2 pl-3 pr-4 rounded-full hover:bg-grat-500 text-white ${user ? 'bg-red-600 hover:bg-red-700 hover:text-gray-100' : 'bg-black hover:bg-gray-800 hover:text-gray-100'}`}>
+      {user ? 'Logout' : 'Login'}
+    </Link>
+  );
+
 export default Navbar;
+
