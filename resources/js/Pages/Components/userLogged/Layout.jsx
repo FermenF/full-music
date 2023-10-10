@@ -11,11 +11,13 @@ const Layout = ({ children }) => {
                     <NavBarAndSearch/>
                     <Library />
                 </div>
-                <div className="md:flex-grow w-full h-full md:col-span-8 lg:col-span-9 row-span-2 xl:col-span-10 rounded-md bg-slate-100">
+                <div className="overflow-hidden md:flex-grow w-full h-full md:col-span-8 lg:col-span-9 row-span-2 xl:col-span-10 rounded-md bg-slate-100">
                     <div className="hidden md:block">
                         <Header/>
                     </div>
-                    { children }
+                    <div className="w-full h-full">
+                        { children }
+                    </div>
                 </div>
             </div>
         </div>

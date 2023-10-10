@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Traits\DeezerTrait;
 
 class HomeController extends Controller
 {
+    use DeezerTrait;
     /**
      * Show the application dashboard.
      *
@@ -14,6 +15,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Home/Home');
+        $categories = $this->getResultByMethod('editorial');
+
+        return Inertia::render('Home/Home', [
+            'data' => [
+                'categories' => [
+                    $categories
+                ],
+            ]
+        ]);
     }
 }
+
