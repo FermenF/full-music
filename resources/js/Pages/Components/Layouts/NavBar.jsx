@@ -7,8 +7,6 @@ const Navbar = () => {
     const { auth } = usePage().props;
     const user = auth.user;
 
-    console.log(user);
-
     return (
         <nav className="bg-white">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
