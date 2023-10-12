@@ -16,7 +16,7 @@ trait MusicBrainzTrait
         $client = new Client();
         $response = $client->request('GET', $this->getApiRouteMB($method),
             [
-                'verify' => false,
+                'verify' => true,
                 'headers' => [
                     'Accept' => 'application/json',
                 ]
