@@ -22,9 +22,13 @@ const Navbar = () => {
                 </button>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-multi-level">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-                        <li>
-                            <Link href="" className="text-1xl font-bold block py-2 pl-3 pr-4 text-white rounded bg-blue-500">Home</Link>
-                        </li>
+                        {
+                            user && (
+                                <li>
+                                    <Link href="/home" className="text-1xl font-bold block py-2 pl-3 pr-4 text-white rounded bg-blue-500">Home</Link>
+                                </li>
+                            )
+                        }
                         <li>
                             <a href="#" className="text-1xl font-bold block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white">Services</a>
                         </li>
