@@ -29,6 +29,7 @@ Route::get('/login', function() {
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/genre/{id}/{name}/artists', [ArtistController::class, 'index'])->name('artists');
+    Route::get('/artists/{id}/{name}', [ArtistController::class, 'show'])->name('artist');
 });
 
 

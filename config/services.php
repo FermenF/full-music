@@ -33,6 +33,10 @@ return [
 
     'deezer' => [
         'api_url' => env('DEEZER_API_URL'),
+    ],
+
+    'music_brainz' => [
+        'api_url' => env('MUSIC_BRAINZ_API_URL')
     ]
 
 ];
