@@ -27,9 +27,19 @@ class ArtistController extends Controller
 
     public function show($id, $name)
     {
-        $result = $this->getResultByMethodMB('artist/?query=artist:'.$name.'%20AND%alias:'.$name.'%20AND%sort-name:'.$name);
+        $artist_method = 'artist/'.$id;
+        $artist_dz = $this->getResultByMethod($artist_method);
+        $albums = $this->getResultByMethod($artist_method.'/albums');
+
+        $artist_data = $this->getResultByMethodMB('artist/?query=artist:'.$name.'%20AND%alias:'.$name.'%20AND%sort-name:'.$name);
+        $artist_mb = $artist_data['artists'][0];
+
         return Inertia::render('Artist/Show', [
-            'artist' => $result['artists'][0]
+            'artist' => [
+                'dreezer' => $artist_dz,
+                'musicBz' => $artist_mb
+            ],
+            'albums' => $albums
         ]);
     }
 }
