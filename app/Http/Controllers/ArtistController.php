@@ -28,7 +28,9 @@ class ArtistController extends Controller
     public function show($id, $name)
     {
         $artist_method = 'artist/'.$id;
+
         $artist_dz = $this->getResultByMethod($artist_method);
+        $tops = $this->getResultByMethod($artist_method.'/top');
         $albums = $this->getResultByMethod($artist_method.'/albums');
 
         $artist_data = $this->getResultByMethodMB('artist/?query=artist:'.$name.'%20AND%alias:'.$name.'%20AND%sort-name:'.$name);
@@ -39,7 +41,8 @@ class ArtistController extends Controller
                 'dreezer' => $artist_dz,
                 'musicBz' => $artist_mb
             ],
-            'albums' => $albums
+            'albums' => $albums,
+            'tops' => $tops
         ]);
     }
 }
