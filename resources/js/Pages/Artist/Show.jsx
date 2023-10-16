@@ -2,11 +2,10 @@ import React from "react";
 import Layout from "../Components/userLogged/Layout";
 import ArtistImage from "./components/ArtistImage";
 import ArtistSongs from "./components/ArtistSongs";
+import ArtistDiscography from "./components/ArtistDiscography";
 
 const Show = (props) => {
-    const { artist: { dreezer }, artist: { musicBz }, tops, album } = props;
-
-    console.log(props);
+    const { artist: { dreezer }, artist: { musicBz }, tops, albums } = props;
 
     return (
         <Layout>
@@ -16,11 +15,12 @@ const Show = (props) => {
                         <ArtistImage
                             image={dreezer.picture_xl}
                             name={dreezer.name}
-                            country={musicBz.country}
-                            country_name={musicBz.area.name}
+                            country={musicBz.country ? musicBz.country : null}
+                            country_name={musicBz.area && musicBz.area.name ? musicBz.area.name : null}
                         />
-                        <div className="bg-gradient-to-b from-gray-600 via-gray-800 to-gray-950 p-5">
-                            <ArtistSongs tops={ tops } className="mb-5"/>
+                        <div className="bg-gray-950 p-5">
+                            <ArtistSongs tops={ tops } artist={ dreezer.name } className="mb-5"/>
+                            <ArtistDiscography albums={ albums }/>
                         </div>
                     </div>
                 </div>

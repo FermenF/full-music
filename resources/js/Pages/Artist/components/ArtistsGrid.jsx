@@ -89,7 +89,7 @@ const ArtistsGrid = (props) => {
                     artists.map((artist, index) => {
                         const randomGradient = getRandomGradient();
                         return (
-                            <Link href={`/artists/${artist.id}/${artist.name}`} key={ index }>
+                            <Link href={`/artists/${artist.id}/${artist.name.replace('/', '|')}`} key={ index }>
                                 <div className='rounded-md relative' key={index} style={{
                                     'height': index % 2 ? "300px" : "480px",
                                     'backgroundImage': `linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url('${artist.picture_big}')`,
