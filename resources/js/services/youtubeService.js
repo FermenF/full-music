@@ -1,40 +1,39 @@
-const baseUrl = 'https://www.googleapis.com/youtube/v3';
-const apiKey = 'key=AIzaSyAB6jrrKXSRNxXepgb1ZgDzQ6Q45KTlRZg';
+// const baseUrl = 'https://full-music-api.fermenf.com/api/v1';
+const baseUrl = 'http://localhost:3333/api/v1';
 
-async function getListSongs(song_name, artist_name, duration) {
+export async function getSong(songId) {
+    try{
+        const response = await fetch(`${ baseUrl }/download-or-get-song?id=${ songId }`);
+        return await response;
+    }catch (error) {
+        throw error
+    };
+};
 
-}
-
-async function getSong(songs, duration = null) {
-    const ids = songs.map(song => song.id.videoId).join(',');
-
+export async function getListSongs(song_name, artist_name, duration) {
     try {
-        const response = await fetch(`${baseUrl}/videos?part=contentDetails&id=${ids}&${apiKey}`);
-        const data = await response.json();
-
-        if (duration) {
-            return compareDurations(data.items, duration);
-        }
+        const response = await fetch(`${baseUrl}/get-songs-list?song=${song_name}&artist=${artist_name}`);
+        const result = await response.json();
+        return compareDurations(result, duration);
     } catch (error) {
-        console.error("Error al obtener la canción:", error);
-    }
-}
+        throw error;
+    };
+};
 
 function compareDurations(songs, durationDeezer) {
-    const [targetMinutes, targetSeconds] = durationDeezer.split(':').map(Number);
-    const targetTotalSeconds = targetMinutes * 60 + targetSeconds;
-
+    const timeDifference = 10;
     for (const song of songs) {
-        const { duration } = song.contentDetails;
-        const [songMinutes, songSeconds] = duration.match(/PT(\d+)M(\d+)S/).slice(1).map(Number);
-        const songTotalSeconds = songMinutes * 60 + songSeconds;
-
-        if (Math.abs(songTotalSeconds - targetTotalSeconds) <= 5) {
-            console.log("entro");
+        const { duration_raw } = song;
+        const durationSongInSeconds = parseDurationToSeconds(duration_raw);
+        const durationDeezerInSeconds = parseDurationToSeconds(durationDeezer);
+        if (Math.abs(durationSongInSeconds - durationDeezerInSeconds) <= timeDifference) {
             return song;
-        }
-    }
-    return "nafa";
-}
+        };
+    };
+    return songs[0];
+};
 
-export default getListSongs;
+function parseDurationToSeconds(duration) {
+    const [minutes, seconds] = duration.split(':');
+    return parseInt(minutes) * 60 + parseInt(seconds);
+};

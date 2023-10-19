@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import getListSongs from '../../../../js/services/youtubeService.js'
-import youtube from '@yimura/scraper'
 
-const ArtistSongs = ({ tops: { data, next }, artist }) => {
+import { getListSongs, getSong } from '../../../../js/services/youtubeService.js'
 
-    const [currentTops, setCurrentTops] = useState(data);
+const ArtistSongs = (props) => {
+
+    const { artist } = props;
+    const { next } = props.tops
+    const tops_data = props.tops.data;
+
+    const [currentTops, setCurrentTops] = useState(tops_data);
     const [nextPageUrl, setNextPageUrl] = useState(next);
+    const [audioUrl, setAudioUrl] = useState(null);
 
     const loadMoreSongs = () => {
         if (nextPageUrl) {
@@ -18,37 +23,30 @@ const ArtistSongs = ({ tops: { data, next }, artist }) => {
         }
     };
 
-    function trunkTitle(text, maxLongth) {
-        if (text.length > maxLongth) {
-            return text.slice(0, maxLongth) + '...';
-        }
-        return text;
-    }
-
-    const getSongFromYoutube = async (e, title, artist, duration) => {
+    async function getSongFromYoutube(e, title, artist, duration) {
+        e.preventDefault();
         try {
-            const yt = new youtube.default();
-            yt.search('Never gonna give you up').then(results => {
-                console.log(results.videos[0]);
-            });
+            const response = await getListSongs(title, artist, duration);
+            const songResponse = await getSong(response.id);
 
+            if (songResponse.status === 200) {
+                const audioBlob = await songResponse.blob();
+                const url = URL.createObjectURL(audioBlob);
+                console.log(url);
+                setAudioUrl(url);
+
+            } else {
+                console.error('Error al obtener la canción');
+            }
         } catch (error) {
-            console.log("error", error);
+            console.error('Error en la solicitud: ', error);
         }
-
-        // e.preventDefault();
-        // try {
-        //     const result = await getListSongs(title, artist, duration);
-        //     console.log("Canción encontrada en YouTube:", result);
-        // } catch (error) {
-        //     console.error("Error al obtener la canción de YouTube:", error);
-        // }
     }
-
 
     return (
         <div className="w-full">
             <div className="text-white">
+                <button type='button' id='testinBtn'>ok</button>
                 <h1 className="font-extrabold text-2xl">Popular</h1>
                 <div className="mt-3">
                     {
@@ -82,6 +80,13 @@ function covertDuration(duration) {
     const min = Math.floor(duration / 60);
     const seg = duration % 60;
     return `${min}:${seg}`;
+}
+
+function trunkTitle(text, maxLongth) {
+    if (text.length > maxLongth) {
+        return text.slice(0, maxLongth) + '...';
+    }
+    return text;
 }
 
 export default ArtistSongs;
