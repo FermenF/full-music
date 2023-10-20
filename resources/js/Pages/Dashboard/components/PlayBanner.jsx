@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { SongContext } from "../../Context/SongContext";
 
 const PlayBanner = () => {
-    const { song } = useContext(SongContext);
+    const { song:{ url }, song: { info } } = useContext(SongContext);
 
-    const [audio] = useState(new Audio(song));
+    const [audio] = useState(new Audio(url));
     const [isPlaying, setIsPlaying] = useState(true);
 
     const [duration, setDuration] = useState(0);
@@ -20,13 +20,23 @@ const PlayBanner = () => {
     };
 
     useEffect(() => {
-        audio.src = song;
+        audio.src = url;
         if (isPlaying) {
             audio.play();
         }
         setIsPlaying(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [song]);
+        const handleTimeUpdate = () => {
+            setCurrentTime(audio.currentTime);
+            setDuration(audio.duration);
+        };
+
+        audio.addEventListener("timeupdate", handleTimeUpdate);
+
+        return () => {
+            audio.removeEventListener("timeupdate", handleTimeUpdate);
+        };
+    }, [url]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -37,13 +47,13 @@ const PlayBanner = () => {
     return (
         <div id="bottom-banner" tabIndex="-1" className="fixed text-white bottom-0 left-0 z-50 flex justify-between items-center w-full p-2 px-5 rounded-md bg-slate-800">
             <div className="flex items-center">
-                <img src="https://lastfm.freetls.fastly.net/i/u/300x300/a45d1688f196028c8e0f31b357e748a4.png" className="img-fluid h-16 w-16 rounded-md" />
+                <img src={ info.image } className="img-fluid h-16 w-16 rounded-md" />
                 <div className="ml-3">
                     <div className="font-bold text-sm">
-                        <h1>Danza Rota Remasterizado 2007</h1>
+                        <h1>{ trunkTitle(info.title, 20) }</h1>
                     </div>
                     <div className="text-gray-500 font-extralight text-xs">
-                        <h5>Soda Stereo</h5>
+                        <h5>{ info.name }</h5>
                     </div>
                 </div>
                 <div className="ml-3">
@@ -90,9 +100,9 @@ const PlayBanner = () => {
                     </button>
                 </div>
                 <div className="flex">
-                    <small className="mx-1 text-gray-600 font-extralight text-sm">0:00</small>
-                    <input type="range" className="w-full" />
-                    <small className="mx-1 text-gray-600 font-extralight text-sm">5:00</small>
+                    <small className="mx-1 text-gray-600 font-extralight text-sm">{formatTime(currentTime)}</small>
+                    <input type="range" className="w-full" min={0} max={duration} value={currentTime} step={0.1} onChange={(e) => audio.currentTime = e.target.value} />
+                    <small className="mx-1 text-gray-600 font-extralight text-sm">{formatTime(duration)}</small>
                 </div>
             </div>
             <div className="">
@@ -101,5 +111,12 @@ const PlayBanner = () => {
         </div>
     );
 };
+
+function trunkTitle(text, maxLongth) {
+    if (text.length > maxLongth) {
+        return text.slice(0, maxLongth) + '...';
+    }
+    return text;
+}
 
 export default PlayBanner;

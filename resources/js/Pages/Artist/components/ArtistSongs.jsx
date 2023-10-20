@@ -24,7 +24,7 @@ const ArtistSongs = (props) => {
         }
     };
 
-    async function getSongFromYoutube(e, title, artist, duration) {
+    async function getSongFromYoutube(e, title, artist, duration, image) {
         e.preventDefault();
         try {
             const response = await getListSongs(title, artist, duration);
@@ -33,7 +33,18 @@ const ArtistSongs = (props) => {
             if (songResponse.status === 200) {
                 const audioBlob = await songResponse.blob();
                 const url = URL.createObjectURL(audioBlob);
-                setSong(url)
+
+                const data = {
+                    url: url,
+                    info: {
+                        'name': artist,
+                        'title': title,
+                        'image': image
+                    }
+                };
+
+                setSong(data);
+
             } else {
                 console.error('Error al obtener la canción');
             }
@@ -50,7 +61,7 @@ const ArtistSongs = (props) => {
                 <div className="mt-3">
                     {
                         currentTops.map((top, index) => (
-                            <div key={index + 1} onClick={(event) => getSongFromYoutube(event, top.title, artist, covertDuration(top.duration))} className="hover:bg-gray-500 p-3 flex items-center justify-between cursor-pointer rounded-md my-3">
+                            <div key={index + 1} onClick={(event) => getSongFromYoutube(event, top.title, artist, covertDuration(top.duration), top.album.cover_small)} className="hover:bg-gray-500 p-3 flex items-center justify-between cursor-pointer rounded-md my-3">
                                 <div className="md:p-3 flex items-center">
                                     <div className="md:ml-3 mr-1 md:mr-5 text-gray-300">{index + 1}</div>
                                     <img className="img-fluid rounded-md" src={top.album.cover_small} alt="Album Cover" />

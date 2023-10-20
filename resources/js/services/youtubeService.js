@@ -1,5 +1,5 @@
-const baseUrl = 'https://full-music-api.fermenf.com/api/v1';
-// const baseUrl = 'http://localhost:3333/api/v1';
+// const baseUrl = 'https://full-music-api.fermenf.com/api/v1';
+const baseUrl = 'http://localhost:3333/api/v1';
 
 export async function getSong(songId) {
     try{
