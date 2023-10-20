@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { getListSongs, getSong } from '../../../../js/services/youtubeService.js'
+import { SongContext } from '../../Context/SongContext.jsx';
 
 const ArtistSongs = (props) => {
 
@@ -10,7 +11,7 @@ const ArtistSongs = (props) => {
 
     const [currentTops, setCurrentTops] = useState(tops_data);
     const [nextPageUrl, setNextPageUrl] = useState(next);
-    const [audioUrl, setAudioUrl] = useState(null);
+    const { setSong } = useContext( SongContext );
 
     const loadMoreSongs = () => {
         if (nextPageUrl) {
@@ -32,9 +33,7 @@ const ArtistSongs = (props) => {
             if (songResponse.status === 200) {
                 const audioBlob = await songResponse.blob();
                 const url = URL.createObjectURL(audioBlob);
-                console.log(url);
-                setAudioUrl(url);
-
+                setSong(url)
             } else {
                 console.error('Error al obtener la canción');
             }
