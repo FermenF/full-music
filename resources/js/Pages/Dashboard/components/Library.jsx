@@ -1,4 +1,13 @@
+import React, { useState} from "react";
+
 const Library = () => {
+
+    const [ open, setOpen ] = useState(true);
+
+    const handleOpen = () => {
+        setOpen(!open);
+    }
+
     return(
         <div className="w-full h-full bg-gray-950 rounded-md overflow-hidden">
             <div className="flex justify-between items-center py-6 px-7 justify-items-center">
@@ -8,13 +17,20 @@ const Library = () => {
                     </svg>
                     <strong className="text-white ml-3.5">Your Library</strong>
                 </div>
-                <button className="ml-1 font-bold text-sm p-2 hover:bg-neutral-700 rounded-full">
-                    <svg className="w-3.5 h-3.w-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
-                    </svg>
-                </button>
+                <div className="flex items-center">
+                    <button className="ml-1 font-bold text-sm p-2 hover:bg-neutral-700 rounded-full">
+                        <svg className="h-3.5 w-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
+                        </svg>
+                    </button>
+                    <button type="button" className="ml-1 font-bold text-sm p-2 hover:bg-neutral-700 rounded-full md:hidden block" onClick={handleOpen}>
+                        <svg className="h-3.5 w-3.5 text-white pt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div className="bg-red-100 mx-2.5 rounded-md py-6 px-7 mb-5">
+            <div className={`bg-red-100 mx-2.5 rounded-md py-6 px-7 mb-5 ${ open === true ? "hidden" : ""} md:block`}>
                 <strong>Create your fisrt filelist</strong>
                 <p className="mt-1 text-sm font-extralight">¡Is so easy! We help to you</p>
                 <div className="mt-5">

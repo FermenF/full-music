@@ -7,10 +7,15 @@ const NavBarAndSearch = () => {
     const { name } = auth.user;
 
     const [ showDropDrown, setShowDropDown ] = useState('hidden');
+    const [ showDropDrownBars, setshowDropDrownBars ] = useState('block');
 
     const toggleDropdown = () => {
         setShowDropDown(prevState => (prevState === 'hidden' ? 'block' : 'hidden'));
     };
+
+    const toggleDropdownBars = () => {
+        setshowDropDrownBars(prevState => (prevState === 'hidden' ? 'block' : 'hidden'));
+    }
 
     return (
         <div className="text-white w-full bg-gray-950 mb-2 py-6 px-4 rounded-md">
@@ -19,7 +24,7 @@ const NavBarAndSearch = () => {
                     LOGO
                     <h1 className="ml-1 font-bold text-sm hidden md:block">FULL MUSIC</h1>
                 </div>
-                <div className="md:hidden">
+                <div className="md:hidden flex">
                     <div>
                         <button id="dropdownDefault" type="button" onClick={() => toggleDropdown()} className="inline-flex items-center p-1 px-2 text-sm font-normal text-center text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-100">
                             { name }
@@ -42,9 +47,14 @@ const NavBarAndSearch = () => {
                             </ul>
                         </div>
                     </div>
+                    <button type='button' className='ml-3' onClick={() => toggleDropdownBars()}>
+                        <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div className="mt-4">
+            <div className={`mt-4 ${showDropDrownBars}`}>
                 <a className="flex content-center items-center cursor-pointer">
                     <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
@@ -52,7 +62,7 @@ const NavBarAndSearch = () => {
                     <strong className="ml-5 text-sm">Home</strong>
                 </a>
             </div>
-            <div className="mt-4">
+            <div className={`mt-4 ${showDropDrownBars}`}>
                 <a className="flex content-center items-center cursor-pointer">
                     <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
