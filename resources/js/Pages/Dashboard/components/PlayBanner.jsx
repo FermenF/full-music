@@ -4,6 +4,7 @@ import { truncateTitle } from "../../../Utils/utils";
 import AudioController from "./AudioController";
 
 const PlayBanner = () => {
+    
     const { song: { info } } = useContext(SongContext);
 
     return (

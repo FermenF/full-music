@@ -17,7 +17,7 @@ export async function getListSongs(song_name, artist_name, duration) {
         return compareDurations(result, duration);
     } catch (error) {
         throw error;
-    };
+    }; 
 };
 
 function compareDurations(songs, durationDeezer) {
