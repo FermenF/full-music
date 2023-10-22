@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { usePage } from "@inertiajs/react";
 
 const NavBarAndSearch = () => {
@@ -11,7 +11,6 @@ const NavBarAndSearch = () => {
     const toggleDropdown = () => {
         setShowDropDown(prevState => (prevState === 'hidden' ? 'block' : 'hidden'));
     };
-
 
     return (
         <div className="text-white w-full bg-gray-950 mb-2 py-6 px-4 rounded-md">
