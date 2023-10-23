@@ -4,7 +4,7 @@ import { truncateTitle } from "../../../Utils/utils";
 import AudioController from "./AudioController";
 
 const PlayBanner = () => {
-    
+
     const { song: { info } } = useContext(SongContext);
 
     return (
@@ -19,11 +19,6 @@ const PlayBanner = () => {
                         <div className="text-gray-900 font-extralight text-xs">
                             <h5>{ info.name }</h5>
                         </div>
-                    </div>
-                    <div className="md:ml-3 ml-1.5">
-                        <svg className="w-5 h-5 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
-                        </svg>
                     </div>
                 </div>
                 <div className="col-span-5 lg:col-span-3">

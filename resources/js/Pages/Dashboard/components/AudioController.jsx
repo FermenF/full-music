@@ -54,6 +54,11 @@ const AudioController = () => {
     return (
         <div className="w-full text-center">
             <div className="flex items-center justify-center my-2">
+                <button className="mx-1 rounded-full p-2 bg-black hover:bg-slate-500">
+                    <svg className="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                    </svg>
+                </button>
                 <button className="mx-1 rounded-full p-2 bg-black hover:bg-slate-500" onClick={ handlePrevSong }>
                     <svg className="w-4 h-4 text-white pr-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4" />

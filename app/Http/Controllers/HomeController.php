@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = $this->getResultByMethod('editorial');
+        $categories = $this->getResultByMethod('genre');
 
         return Inertia::render('Home/Home', [
             'data' => [

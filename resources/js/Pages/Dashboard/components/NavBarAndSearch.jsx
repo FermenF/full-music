@@ -7,7 +7,7 @@ const NavBarAndSearch = () => {
     const { name } = auth.user;
 
     const [ showDropDrown, setShowDropDown ] = useState('hidden');
-    const [ showDropDrownBars, setshowDropDrownBars ] = useState('block');
+    const [ showDropDrownBars, setshowDropDrownBars ] = useState('hidden');
 
     const toggleDropdown = () => {
         setShowDropDown(prevState => (prevState === 'hidden' ? 'block' : 'hidden'));
@@ -54,7 +54,7 @@ const NavBarAndSearch = () => {
                     </button>
                 </div>
             </div>
-            <div className={`mt-4 ${showDropDrownBars}`}>
+            <div className={`mt-4 ${showDropDrownBars} md:block`}>
                 <a className="flex content-center items-center cursor-pointer">
                     <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
@@ -62,7 +62,7 @@ const NavBarAndSearch = () => {
                     <strong className="ml-5 text-sm">Home</strong>
                 </a>
             </div>
-            <div className={`mt-4 ${showDropDrownBars}`}>
+            <div className={`mt-4 ${showDropDrownBars} md:block`}>
                 <a className="flex content-center items-center cursor-pointer">
                     <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
