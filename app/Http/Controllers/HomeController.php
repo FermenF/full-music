@@ -15,14 +15,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = $this->getResultByMethod('infos');
-        dd($categories);
+        $categories = $this->getResultByMethod('genre');
+
         return Inertia::render('Home/Home', [
             'data' => [
                 'categories' => [
                     $categories
                 ],
             ]
+        ]);
+    }
+
+    public function queryFilter($query)
+    {
+        $results = $this->getResultByMethod('search?q='. $query);
+
+        return Inertia::render('Search/Search', [
+            'data' => $results
         ]);
     }
 }

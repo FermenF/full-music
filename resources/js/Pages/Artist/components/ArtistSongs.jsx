@@ -10,6 +10,8 @@ const ArtistSongs = (props) => {
 
     const { song, setSong, songs, setSongs, nextPageUrl, setNextPageUrl, loadMoreSongs } = useContext(SongContext);
 
+    console.log(tops_data);
+
     useEffect(() => {
         setSongs(tops_data);
         setNextPageUrl(next);

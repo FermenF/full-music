@@ -5,7 +5,6 @@ import Favourites from "./components/Favourites.jsx";
 import ArtistWithSearch from "./components/ArtistWithSearch.jsx";
 import Discovers from "./components/Discovers.jsx";
 import Popular from "./components/Popular.jsx";
-import Navbar from "../Components/Layouts/NavBar.jsx";
 
 const Index = () => {
     return (

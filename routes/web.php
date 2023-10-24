@@ -30,10 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/genre/{id}/{name}/artists', [ArtistController::class, 'index'])->name('artists');
     Route::get('/artists/{id}/{artist}', [ArtistController::class, 'show'])->name('artist');
-
-    Route::get('/test', function(){
-        return redirect()->back()->with('dsdsd', 0);
-    });
+    Route::get('/search/{query}', [HomeController::class, 'queryFilter'])->name('search');
 });
 
 

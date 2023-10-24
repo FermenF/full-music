@@ -1,13 +1,20 @@
 import React from "react";
 
-import { SongProvider } from "../../Context/SongContext.jsx";
 import App from "./App.jsx";
+import { SongProvider } from "../../Context/SongContext.jsx";
+import { SearchProvider } from "../../Context/SearchContext.jsx";
 
 const Layout = ({children}) => {
 
     return (
         <SongProvider>
-            <App children={ children }/>
+
+            <SearchProvider>
+
+                <App children={ children }/>
+
+            </SearchProvider>
+
         </SongProvider>
     );
 }
